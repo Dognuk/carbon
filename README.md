@@ -15,6 +15,8 @@ To build a better understanding of the game development process.
 
 - [x] Get necessary libraries working
 - [x] Get the project to work with Maven
+- [x] Write batch scripts to compile Maven project in Windows environment
+- [ ] Write bash scrpts to compile Maven project in Unix environment
 
 
 [1]: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
