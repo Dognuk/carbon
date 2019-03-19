@@ -1,6 +1,31 @@
-bin/
-lib/
-.vscode/
+#
+# Standard Maven .gitignore
+#
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+#
+# IntelliJ
+#
+*.iml
+.idea/*
+!.idea/runConfigurations/
+
+#
+# Visual Studio Code
+#
 .settings/
-.project
 .classpath
+.project
+.vscode/
+carbon.exe
+Carbon.lnk
+.gitattributes
+.editorconfig
