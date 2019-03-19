@@ -7,12 +7,12 @@ import static org.junit.Assert.*;
 /**
  * Unit test for simple App.
  */
-public class AppTest {
+public class CarbonTest {
     /**
      * Rigorous Test.
      */
     @Test
-    public void testApp() {
+    public void testCarbon() {
         assertTrue(true);
     }
 }
