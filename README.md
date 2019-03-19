@@ -3,8 +3,10 @@ Carbon is 2D sci-fi rogue-like adventure game written in Java. It makes use of S
 
 ## Requirements to build
 - [JDK8][1]
-- [JRE8][2]
 - Maven
+
+## Requirements to run
+- [JRE8][2]
 
 ## Goal
 To build a better understanding of the game development process.
