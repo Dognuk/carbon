@@ -1,72 +1,62 @@
 package carbon;
 
+import java.util.Hashtable;
+
+import org.lwjgl.LWJGLException;
 import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
+import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Circle;
-import org.newdawn.slick.geom.Shape;
+
+import carbon.game.Game;
+import carbon.game.GameUtil;
+import carbon.game.SuboptimalDeviceModeException;
 
 /**
- * The entry class to the game
+ * The entry class to the game.
+ * 
+ * @author Jonathan Redeker
  */
-public final class Carbon extends BasicGame {
+public final class Carbon {
+    
+    // TO-DO: Create gamesetting.json and GameUtil.loadGameSettings to load them
+    private final static String GAME_NAME = "Carbon";
+    private final static String GAME_VERSION = "0.1-alpha";
+    private final static String GAME_TITLE = GAME_NAME + " " + GAME_VERSION;
+    private final static int NORMAL_WIDTH = 1920;
+    private final static int NORMAL_HEIGHT = 1080;
+    private final static boolean FULLSCREEN = false;
 
-    private Shape circle = null;
-    private Shape circle2 = null;
-    private boolean collides = false;
-
-    private Carbon(String title) {
-        super(title);
-    }
-
-    @Override
-    public void init(GameContainer container) throws SlickException {
-
-        circle = new Circle(50, 50, 25);
-        circle2 = new Circle(100, 100, 35);
-
-    }
-
-    @Override
-    public void update(GameContainer container, int delta) throws SlickException {
-
-        circle.setCenterX(container.getInput().getMouseX());
-        circle.setCenterY(container.getInput().getMouseY());
-
-        collides = circle2.contains(circle) || circle2.intersects(circle);
-
-    }
-
-    public void render(GameContainer container, Graphics graphics) throws SlickException {
-
-        graphics.setColor(Color.blue);
-        graphics.fill(circle2);
-        graphics.draw(circle2);
-
-        graphics.setColor(Color.red);
-        graphics.fill(circle);
-        graphics.draw(circle);
-
-        graphics.setColor(Color.white);
-        graphics.drawString("Collides: " + collides, 15, 30);
-
+    private Carbon(Game game) {
     }
 
     /**
-     * Opens a window to render graphics using Slick2D
+     * Start the game
+     * 
      * @param args The arguments of the program.
+     * @throws LWJGLException
+     * @throws SuboptimalDeviceModeException
+     * 
+     * @author Jonathan Redeker
      */
-    public static void main(String[] args) throws SlickException {
+    public static void main(String[] args) 
+        throws SlickException, LWJGLException, SuboptimalDeviceModeException {
 
-        System.out.println("Hello World!");
-        AppGameContainer application = new AppGameContainer(new Carbon("Carbon 0.1-alpha"));
-        application.setDisplayMode(800, 600, false);
-        application.setTargetFrameRate(60);
-        application.getAlwaysRender();
-        application.start();
+        Game game = new Game(GAME_TITLE);
+        ScalableGame scaledGame = new ScalableGame(game, 
+                                                   NORMAL_HEIGHT, 
+                                                   NORMAL_WIDTH);
+        AppGameContainer carbon = new AppGameContainer(scaledGame);
+        Hashtable<String, Integer> displayMode = GameUtil.getDisplayMode(NORMAL_HEIGHT,
+                                                                         NORMAL_WIDTH,
+                                                                         FULLSCREEN);
+
+        carbon.setDisplayMode(displayMode.get("width"),
+                              displayMode.get("height"),
+                              displayMode.get("fullscreen") != 0);
+        carbon.setTargetFrameRate(60);
+        carbon.setVSync(true);
+        carbon.getAlwaysRender();
+        carbon.start();
 
     }
 
