@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jonathanredeker</groupId>
     <artifactId>carbon</artifactId>
-    <version>0.1-alpha</version>
+    <version>0.0-dev</version>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -26,6 +26,11 @@
 		    <artifactId>slick2d-core</artifactId>
 		    <version>1.0.2</version>
 		</dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement>

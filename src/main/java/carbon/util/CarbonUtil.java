@@ -1,4 +1,4 @@
-package carbon;
+package carbon.util;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -16,7 +16,6 @@ import org.lwjgl.opengl.DisplayMode;
 public final class CarbonUtil {
     
     public CarbonUtil() {
-
     }
 
     /**
@@ -64,11 +63,14 @@ public final class CarbonUtil {
         }
 
         if (bitsPerPixel < 8) {
+
             throw new CarbonException("The user's display mode does not "
                                      +"meet the requirments to run Carbon.");
+                                     
         }
 
         Hashtable<String, Integer> displayMode = new Hashtable<String, Integer>();
+        
         displayMode.put("height", displayModes[biggestMode].getHeight());
         displayMode.put("width", displayModes[biggestMode].getWidth());
 

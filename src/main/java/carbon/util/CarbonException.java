@@ -1,4 +1,4 @@
-package carbon;
+package carbon.util;
 
 /**
  * A general Exception for all Carbon related errors.
@@ -10,7 +10,7 @@ public class CarbonException extends Exception {
     public CarbonException(String message) {
 
         super(message);
-
+        
     }
 
 }
