@@ -1,9 +1,10 @@
-package carbon.game;
+package carbon;
+
+import carbon.states.*;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
 
 public class Game extends StateBasedGame {
 
@@ -13,7 +14,7 @@ public class Game extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer container) throws SlickException {
-
+        this.addState(new Menu());
     }
 
 }

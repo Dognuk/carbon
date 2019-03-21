@@ -1,4 +1,4 @@
-package carbon.game;
+package carbon;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -13,9 +13,9 @@ import org.lwjgl.opengl.DisplayMode;
  * 
  * @author Jonathan Redeker
  */
-public final class GameUtil {
+public final class CarbonUtil {
     
-    public GameUtil() {
+    public CarbonUtil() {
 
     }
 
@@ -24,17 +24,17 @@ public final class GameUtil {
      * 
      * @param NORMAL_WIDTH     The normal width of the game
      * @param NORMAL_HEIGHT    The normal height of the game
-     * @param enableFullscreen Enable or disable fullscreen
+     * @param FULLSCREEN       Fullscreen if true
      * 
      * @return Returns the optimal display mode for the user
-     * @throws SuboptimalDeviceModeException
+     * @throws CarbonException
      * 
      * @author Jonathan Redeker
      */
-    public final static Hashtable<String, Integer> getDisplayMode(int NORMAL_WIDTH,
-                                                                  int NORMAL_HEIGHT,
-                                                                  boolean enableFullscreen)
-        throws LWJGLException, SuboptimalDeviceModeException {
+    public final static Hashtable<String, Integer> getDisplayMode(final int NORMAL_WIDTH,
+                                                                  final int NORMAL_HEIGHT,
+                                                                  final boolean FULLSCREEN)
+        throws LWJGLException, CarbonException {
 
         DisplayMode[] displayModes = Display.getAvailableDisplayModes();
         DecimalFormat tenth = new DecimalFormat("#.##");
@@ -63,7 +63,10 @@ public final class GameUtil {
 
         }
 
-        if (bitsPerPixel < 8) throw new SuboptimalDeviceModeException();
+        if (bitsPerPixel < 8) {
+            throw new CarbonException("The user's display mode does not "
+                                     +"meet the requirments to run Carbon.");
+        }
 
         Hashtable<String, Integer> displayMode = new Hashtable<String, Integer>();
         displayMode.put("height", displayModes[biggestMode].getHeight());
@@ -71,7 +74,7 @@ public final class GameUtil {
 
         if ((tenth.format(displayMode.get("width") / (double) displayMode.get("height"))
             .equals(tenth.format(NORMAL_WIDTH / (double) NORMAL_HEIGHT)))
-            && enableFullscreen == true) {
+            && FULLSCREEN == true) {
 
             displayMode.put("fullscreen", 1);
 
